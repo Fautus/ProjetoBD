@@ -1,0 +1,4 @@
+create table produto 
+(ID int primary key,
+ean numeric (13),
+descricao varchar (50));
