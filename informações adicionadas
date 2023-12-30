@@ -1,0 +1,5 @@
+insert
+	into produto (id, ean, descricao)
+values (0000001,
+7892183752163,
+'Dorflex 10MG');
