@@ -2,3 +2,11 @@ create table produto
 (ID int primary key,
 ean numeric (13),
 descricao varchar (50));
+
+--------------------------------
+
+create table pessoa (ID int primary key,
+nome varchar (50),
+cpfPessoa numeric (13),
+rgPessoa numeric (10),
+enderecoPessoa varchar (30));
