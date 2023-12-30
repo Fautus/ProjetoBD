@@ -1,6 +1,6 @@
-create table produto 
-(ID int primary key,
-ean numeric (13),
+create table produto (
+ID        int            primary key,
+ean       numeric (13),
 descricao varchar (50));
 
 *Numeric tras os numeros com pontos, porém não parece influenciar em nada*
@@ -18,8 +18,9 @@ ADD column    custo DECIMAL (13,2),
 ADD column    controlado BIT;
 --------------------------------
 
-create table pessoa (ID int primary key,
-nome varchar (50),
-cpfPessoa numeric (13),
-rgPessoa numeric (10),
+create table pessoa (
+ID             int            primary key,
+nome           varchar (50),
+cpfPessoa      numeric (13),
+rgPessoa       numeric (10),
 enderecoPessoa varchar (30));
