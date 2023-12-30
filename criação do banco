@@ -3,6 +3,13 @@ create table produto
 ean numeric (13),
 descricao varchar (50));
 
+*Numeric tras os numeros com pontos, porém não parece influenciar em nada*
+
+alter table produto drop ean;
+
+*Em seguida realizei a criação usando outro tipo*
+
+create table teste (numero decimal (12));
 --------------------------------
 
 create table pessoa (ID int primary key,
