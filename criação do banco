@@ -9,7 +9,13 @@ alter table produto drop ean;
 
 *Em seguida realizei a criação usando outro tipo*
 
-create table teste (numero decimal (12));
+ALTER TABLE produto
+ADD column    ean DECIMAL (10),
+ADD column    etiqueta NUMERIC(6),
+ADD column    estoque NUMERIC(4),
+ADD column    preco DECIMAL (13, 2),
+ADD column    custo DECIMAL (13,2),
+ADD column    controlado BIT;
 --------------------------------
 
 create table pessoa (ID int primary key,
