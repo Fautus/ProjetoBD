@@ -2,8 +2,31 @@ Show e desc:
 Esse comando é usado para mostrar as informações de tabelas e colunas,
 Exemplos de utilização
 
-SHOW TABLES;
-/* mostra as tebelas
+/* mostra as tebelas do banco de dados
+SHOW TABLES; <Para Mysql>
 
-DESC CLIENTE;
+<Para postgresql>:
+
+SELECT
+	table_name
+FROM
+	information_schema.tables
+WHERE
+	table_schema = 'public'           /* Importante adicionar qual o schema que está sendo verificado
+	                                  /* ou o esquema onde suas tabelas estão localizadas
+AND 
+  table_type = 'BASE TABLE';
+
+
 /* mostra as colunas de uma tabela (Cliente é o nome de uma tabela do baco de dados)
+DESC CLIENTE; <Para Mysql>
+
+<Para Postgresql>
+SELECT 
+  column_name, data_type
+FROM 
+  information_schema.columns
+WHERE 
+  table_name = 'cliente';
+
+------------------------------------------------------------------------------------------------------------------------
