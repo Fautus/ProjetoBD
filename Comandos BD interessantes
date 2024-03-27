@@ -1,0 +1,9 @@
+Show e desc:
+Esse comando é usado para mostrar as informações de tabelas e colunas,
+Exemplos de utilização
+
+SHOW TABLES;
+/* mostra as tebelas
+
+DESC CLIENTE;
+/* mostra as colunas de uma tabela (Cliente é o nome de uma tabela do baco de dados)
