@@ -30,3 +30,15 @@ WHERE
   table_name = 'cliente';
 
 ------------------------------------------------------------------------------------------------------------------------
+
+Comando Like
+/* Ele é usado para puxar valores aproximados do que eu preciso, por exemplo quando eu quero puxar algumas informação que tenha a informação de pessoas que moram 
+no bairro centro */
+Exemplo e utilização
+
+SELECT * FROM pessoa WHERE endereco LIKE 'CENTRO';
+
+OBS: é possível utilizar o caractere coringa % que significa qualquer coisa antes ou depois das aspas simples para filtrar quando você não sabe o que tem antes ou o que tem
+depois, ele também pode ser usado em ambos os casos, quando a palavra CENTRO fica no meio de um determinado texto. Se deixar por exemplo '%CENTRO' significa que termina com
+CENTRO e tem qualquer coisa antes dele.
+
