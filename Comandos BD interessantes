@@ -42,3 +42,15 @@ OBS: é possível utilizar o caractere coringa % que significa qualquer coisa an
 depois, ele também pode ser usado em ambos os casos, quando a palavra CENTRO fica no meio de um determinado texto. Se deixar por exemplo '%CENTRO' significa que termina com
 CENTRO e tem qualquer coisa antes dele.
 
+------------------------------------------------------------------------------------------------------------------------
+
+Comando Group by
+Esse comando agrupa as informações conforme o que esta sendo pesquisado
+Exemplo: SELECT SEXO, COUNT(*) FROM CLIENTE GROUP BY SEXO.
+
+------------------------------------------------------------------------------------------------------------------------
+
+Comando count(*)
+Esse comando vai fazer a contagem de quantas informações tem na pesquisa, por exemplo, eu tenho 10 resitros em uma tabela e uso esse comando ele me retorna que eu tenho
+10 registros.
+Exemplo: SELECT COUNT(*) FROM CLIENTE
