@@ -54,3 +54,15 @@ Comando count(*)
 Esse comando vai fazer a contagem de quantas informações tem na pesquisa, por exemplo, eu tenho 10 resitros em uma tabela e uso esse comando ele me retorna que eu tenho
 10 registros.
 Exemplo: SELECT COUNT(*) FROM CLIENTE
+
+------------------------------------------------------------------------------------------------------------------------
+
+Comando Auto_increment
+Esse comando é usado quando você quer que seja preenchido automaticamente valores na tabela, um exemplo de uso seria na hora de definir ID's para registros.
+Exemplo de utilização: 
+CREATE DATABASE PRODUTO (
+	IDCLIENTE INT PRIMARY KEY AUTO_INCREMENT,
+	ETC...,
+	ETC...
+);
+------------------------------------------------------------------------------------------------------------------------
