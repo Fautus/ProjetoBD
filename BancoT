@@ -1,0 +1,32 @@
+-- para a criação de um enum em postgresql precisa primeiro criar o tipo antes de usar, segue a criação
+CREATE TYPE status_sexo AS tipo_sexo ('M', 'F', 'N');
+
+CREATE TYPE status_telefone AS tipo_telefone ('CEL', 'TEL', 'COM');
+
+
+
+
+-- Criação do banco de dados
+
+create table projeto02.telefone (
+	telefoneid	SERIAL	int			 primary key,
+	numero				varchar(10)	 not null,
+	tipo				tipo_telfone not null
+);
+
+create table projeto02.endereco (
+	enderecoid	SERIAL	int			primary key,
+	rua					varchar(30) not null,
+	bairro				varchar(20) not null,
+	cidade				varchar(20) not null,
+	estado				varchar(2)	not null
+);
+
+create table projeto02.cliente (
+	clienteid	SERIAL	int			  primary key,
+	nome				varchar(30)   not null,
+	cpf					varchar(15)	  unique,
+	sexo				tipo_sexo	  not null,
+	email				varchar(50)   unique
+);
+
