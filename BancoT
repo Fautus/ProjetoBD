@@ -9,8 +9,8 @@ CREATE TYPE status_telefone AS ENUM ('CEL', 'TEL', 'COM');
 -- Criação do banco de dados
 
 create table projeto02.telefone (
-	telefoneid			SERIAL		   primary key,
-	numero				varchar(10)	   not null,
+	telefoneid			SERIAL		    primary key,
+	numero				varchar(10)	    not null,
 	tipo				status_telefone not null,
 	id_cliente			int,
 	foreign key (id_cliente)
@@ -36,3 +36,43 @@ create table projeto02.cliente (
 	email				varchar(50)   unique
 );
 
+-- Quando usar o SERIAL	não precisa informar ele, apenas pule ele (Importante lembrar de informar quais campos serão preenchidos)
+
+insert into projeto02.cliente (nome,cpf,sexo,email) values ('Bruno Santos','64616316','M','brunosantos@gmail.com');
+insert into projeto02.cliente (nome,cpf,sexo,email) values ('Breno Santos','984302361','M','brenogames@gmail.com');
+insert into projeto02.cliente (nome,cpf,sexo,email) values ('Carlos Oliveira','896461456','M','carlosbala@gmail.com');
+insert into projeto02.cliente (nome,cpf,sexo,email) values ('Giovanna Cruz','665241995','F','gidamoita@gmail.com');
+insert into projeto02.cliente (nome,cpf,sexo,email) values ('Isabelle Fiota','953613248','F','isasinha@gmail.com');
+insert into projeto02.cliente (nome,cpf,sexo,email) values ('Gustavo Pai','9713774651','M','foicomprarcigarro@gmail.com');
+
+-- esqueci de deixa pelo menos um e-mail como null para testar, mas segue a correção e comando de teste para facilitar
+
+update projeto02.cliente set email = null where clienteid = '5';
+
+select * from projeto02.cliente;
+
+-- Iserção de tabelas que tem chave estrangeira 
+
+-- Primeiro para endereço
+
+insert into projeto02.endereco (rua,bairro,cidade,estado,id_cliente) values ('Rua antonio rossi','vila rossi','limeira','SP',1);
+insert into projeto02.endereco (rua,bairro,cidade,estado,id_cliente) values ('Rua da aparecida','ragazzo','araras','SP',2);
+insert into projeto02.endereco (rua,bairro,cidade,estado,id_cliente) values ('Rua antonieta','vila nossa aparecida','limeira','SP',3);
+insert into projeto02.endereco (rua,bairro,cidade,estado,id_cliente) values ('Rua mastodonte','vila grande','americana','MG',4);
+insert into projeto02.endereco (rua,bairro,cidade,estado,id_cliente) values ('Rua das conchas','vila bergamota','americana','MG',5);
+insert into projeto02.endereco (rua,bairro,cidade,estado,id_cliente) values ('Rua das laranjas','vila bergamota','limeira','SP',6);
+
+select * from projeto02.endereco;
+
+insert into projeto02.telefone (numero,tipo,id_cliente) values ('988012903','CEL',2);
+insert into projeto02.telefone (numero,tipo,id_cliente) values ('849816516','TEL',2);
+insert into projeto02.telefone (numero,tipo,id_cliente) values ('267496416','CEL',1);
+insert into projeto02.telefone (numero,tipo,id_cliente) values ('321978478','CEL',3);
+insert into projeto02.telefone (numero,tipo,id_cliente) values ('318912168','TEL',2);
+insert into projeto02.telefone (numero,tipo,id_cliente) values ('187961321','COM',5);
+insert into projeto02.telefone (numero,tipo,id_cliente) values ('198754545','COM',6);
+insert into projeto02.telefone (numero,tipo,id_cliente) values ('945165485','TEL',3);
+insert into projeto02.telefone (numero,tipo,id_cliente) values ('166841355','CEL',1);
+insert into projeto02.telefone (numero,tipo,id_cliente) values ('394615181','CEL',6);
+
+select * from projeto02.telefone;
