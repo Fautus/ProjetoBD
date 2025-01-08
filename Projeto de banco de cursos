@@ -1,0 +1,106 @@
+-- Criação do banco
+
+create schema projeto_cursos;
+
+create table projeto_cursos.curso(
+	id serial primary key,
+	nome varchar(30) not null,
+	horas int not null,
+	preco numeric(10,2) not null
+);
+
+-- Criação da procedure, ps: se atentar no insert kk
+
+create procedure projeto_cursos.cad_cursos (p_nome varchar,
+						   p_horas int,
+						   p_preco numeric(10,2))
+language plpgsql
+as $$
+begin
+	insert into projeto_cursos.curso (nome,horas,preco) values (p_nome,p_horas,p_preco);
+end;
+$$;
+
+-- Primeiro call usei um que a gente pode difinir manualmente o tipo de dado caso de problema
+
+call projeto_cursos.cad_cursos(
+cast('BI SQL SERVER' as varchar),
+cast(35 as int),
+cast(3000.00 as numeric(10,2))); 
+
+-- Seguintes segue normal
+
+call projeto_cursos.cad_cursos('POWER BI',20,1000.00);
+call projeto_cursos.cad_cursos('TABLEAU',30,1200.00);
+
+-- Atividades, mais dados:
+
+call projeto_cursos.cad_cursos('JAVA',100,3500.00);
+call projeto_cursos.cad_cursos('PROGRAMAÇÃO ESTRUTUDADA',40,2000.00);
+call projeto_cursos.cad_cursos('CALCULO I',25,1500.00);
+
+
+-- Procedure para consultar cursos por procedure em postgresql é um saco
+
+
+create procedure 
+	projeto_cursos.cons_cursos(
+	in p_curso varchar,
+	out p_resultado TEXT)
+language plpgsql
+as $select$
+begin
+	select nome,horas,preco into p_resultado from projeto_cursos.curso where nome = p_curso;
+
+    IF NOT FOUND THEN
+        RAISE NOTICE 'Nenhum curso encontrado com o nome %', p_curso;
+        p_resultado := 'Curso não encontrado';
+    end if;
+end;
+$select$;
+
+call projeto_cursos.cons_cursos(
+cast('JAVA' as varchar));
+
+CALL projeto_cursos.cons_cursos('JAVA', p_resultado);
+
+DO $$
+DECLARE
+    resultado TEXT;
+BEGIN
+    CALL projeto_cursos.cons_cursos('JAVA', resultado);
+    RAISE NOTICE 'Resultado: %', resultado;
+END;
+$$;
+
+drop procedure projeto_cursos.cons_cursos; 
+
+-- acabei cedendo a function :( mas admito que foi bem mais fácil
+
+CREATE OR REPLACE FUNCTION projeto_cursos.cons_cursos2(p_curso VARCHAR)
+RETURNS TABLE(nome VARCHAR, horas INT, preco NUMERIC(10,2))
+LANGUAGE sql
+AS $$
+    SELECT nome, horas, preco
+    FROM projeto_cursos.curso
+    WHERE nome = p_curso;
+$$;
+
+-- Chamar a função:
+SELECT * FROM projeto_cursos.cons_cursos2('JAVA');
+
+
+
+
+
+
+
+
+select * from projeto_cursos.curso c;
+
+
+
+
+
+
+
