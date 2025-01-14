@@ -1,0 +1,57 @@
+CREATE TYPE CONSULTORIO.status_sexo AS ENUM ('M', 'F', 'N');
+
+CREATE SCHEMA CONSULTORIO;
+
+CREATE TABLE CONSULTORIO.PACIENTE(
+	IDPACIENTE SERIAL PRIMARY KEY,
+	NOME VARCHAR(30),
+	SEXO VARCHAR(1),
+	EMAIL VARCHAR(30),
+	NASCIMENTO DATE
+);
+
+CREATE TABLE CONSULTORIO.MEDICO(
+	IDMEDICO SERIAL PRIMARY KEY,
+	NOME VARCHAR(30),
+	SEXO CHAR(1),
+	ESPECIALIDADE VARCHAR(30),
+	FUNCIONARIO status_sexo
+);
+
+CREATE TABLE CONSULTORIO.HOSPITAL(
+	IDHOSPITAL SERIAL PRIMARY KEY,
+	NOME VARCHAR(30),
+	BAIRRO VARCHAR(30),
+	CIDADE VARCHAR(30),
+	ESTADO CHAR(2)
+);
+
+CREATE TABLE CONSULTORIO.CONSULTA(
+	IDCONSULTA SERIAL  PRIMARY KEY,
+	ID_PACIENTE INT,
+	ID_MEDICO INT,
+	ID_HOSPITAL INT,
+	DATA TIMESTAMP,
+	DIAGNOSTICO VARCHAR(50)
+);
+
+CREATE TABLE CONSULTORIO.INTERNACAO(
+	IDINTERNACAO SERIAL PRIMARY KEY,
+	ENTRADA TIMESTAMP,
+	QUARTO INT,
+	SAIDA TIMESTAMP,
+	OBSERVACOES VARCHAR(50),
+	ID_CONSULTA INT UNIQUE	
+);  
+
+alter table consultorio.consulta 
+add constraint FK_consulta_hospital foreign key (id_hospital) references consultorio.hospital (idhospital);
+
+alter table consultorio.consulta 
+add constraint FK_consulta_medico foreign key (id_medico) references consultorio.medico (idmedico);
+
+alter table consultorio.consulta 
+add constraint FK_consulta_paciente foreign key (id_paciente) references consultorio.paciente (idpaciente);
+
+alter table consultorio.internacao 
+add constraint FK_internacao_consulta foreign key (id_consulta) references consultorio.consulta (idconsulta);
